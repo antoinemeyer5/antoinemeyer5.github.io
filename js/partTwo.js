@@ -1,5 +1,8 @@
-import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
-import {OrbitControls} from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+let duck;
 
 class Cube extends THREE.Mesh {
   constructor(color) {
@@ -69,7 +72,28 @@ controls.maxDistance = 10;
 be1.position.set(-2, 0, 0)*/
 const be2 = new Cube('red')
 be2.position.set(0, 0, 0)
-scene.add(be2)
+//scene.add(be2)
+
+// 3D MODEL
+const loadingManager = new THREE.LoadingManager( function () {
+  scene.add( duck );
+} );
+
+const loader = new GLTFLoader(loadingManager);
+loader.load( '/Duck2.glb', function ( gltf ) {
+  gltf.scene.scale.set(0.2, 0.2, 0.2);
+  gltf.scene.position.set (0, -1.2, 0);
+  gltf.scene.rotation.set( 0.2, -0.9, 0 );
+  duck = gltf.scene;
+	//scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	//console.error( error );
+} );
+
+
+
+
+
 /*const be3 = new Cube('red')
 be3.position.set(2, 0, 0)
 scene.add(be1)
@@ -87,11 +111,11 @@ scene.add(fr2)
 */
 
 
-/*const ambientLight = new THREE.AmbientLight()
+const ambientLight = new THREE.AmbientLight()
 const pointLight = new THREE.PointLight()
 pointLight.position.set(10, 10, 10)
 scene.add(ambientLight)
-scene.add(pointLight)*/
+scene.add(pointLight)
 
 // responsive
 function resize() {
@@ -154,6 +178,8 @@ function animate(t) {
   scene.traverse((obj) => {
     if (obj.render) obj.render(t)
   })
+  // duck
+  duck.rotation.y += -0.03 * 0.5;
   renderer.render(scene, camera)
 }
 
