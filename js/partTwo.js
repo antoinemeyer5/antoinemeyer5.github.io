@@ -1,10 +1,5 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-import DUCK from "/public/Duck2.glb?url";
-
-let duck;
 
 class Cube extends THREE.Mesh {
   constructor(color) {
@@ -50,7 +45,7 @@ let controls;
 
 // setup
 const scene = new THREE.Scene()
-scene.background = new THREE.Color( 0xCCCCCC );
+scene.background = new THREE.Color( 0x4fb9c9 );
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 camera.position.z = 4
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
@@ -70,39 +65,17 @@ controls.maxDistance = 10;
 //
 
 // view
-/*const be1 = new Cube('black')
-be1.position.set(-2, 0, 0)*/
-const be2 = new Cube('red')
+const be1 = new Cube('black')
+be1.position.set(-2, 0, 0)
+const be2 = new Cube('yellow')
 be2.position.set(0, 0, 0)
-//scene.add(be2)
-
-// 3D MODEL
-const loadingManager = new THREE.LoadingManager( function () {
-  scene.add( duck );
-} );
-
-const loader = new GLTFLoader(loadingManager);
-loader.load( DUCK, function ( gltf ) {
-  gltf.scene.scale.set(0.2, 0.2, 0.2);
-  gltf.scene.position.set (0, -1.2, 0);
-  gltf.scene.rotation.set( 0.2, -0.9, 0 );
-  duck = gltf.scene;
-	//scene.add( gltf.scene );
-}, undefined, function ( error ) {
-	//console.error( error );
-} );
-
-
-
-
-
-/*const be3 = new Cube('red')
+const be3 = new Cube('red')
 be3.position.set(2, 0, 0)
 scene.add(be1)
-
+scene.add(be2)
 scene.add(be3)
 
-
+/*
 const fr1 = new Cube('blue')
 fr1.position.set(2, 0, -4)
 const fr2 = new Cube('white')
@@ -180,8 +153,6 @@ function animate(t) {
   scene.traverse((obj) => {
     if (obj.render) obj.render(t)
   })
-  // duck
-  duck.rotation.y += -0.03 * 0.5;
   renderer.render(scene, camera)
 }
 
