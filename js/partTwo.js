@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+import DUCK from "/Duck2.glb?url";
+
 let duck;
 
 class Cube extends THREE.Mesh {
@@ -80,7 +82,7 @@ const loadingManager = new THREE.LoadingManager( function () {
 } );
 
 const loader = new GLTFLoader(loadingManager);
-loader.load( '/static/Duck2.glb', function ( gltf ) {
+loader.load( DUCK, function ( gltf ) {
   gltf.scene.scale.set(0.2, 0.2, 0.2);
   gltf.scene.position.set (0, -1.2, 0);
   gltf.scene.rotation.set( 0.2, -0.9, 0 );
