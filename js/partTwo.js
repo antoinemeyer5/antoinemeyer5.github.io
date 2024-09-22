@@ -80,7 +80,7 @@ const loadingManager = new THREE.LoadingManager( function () {
 } );
 
 const loader = new GLTFLoader(loadingManager);
-loader.load( '/Duck2.glb', function ( gltf ) {
+loader.load( '/static/Duck2.glb', function ( gltf ) {
   gltf.scene.scale.set(0.2, 0.2, 0.2);
   gltf.scene.position.set (0, -1.2, 0);
   gltf.scene.rotation.set( 0.2, -0.9, 0 );
