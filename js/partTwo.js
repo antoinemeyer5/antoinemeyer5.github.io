@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-import DUCK from "/Duck2.glb?url";
+import DUCK from "/public/Duck2.glb?url";
 
 let duck;
 
