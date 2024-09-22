@@ -3,9 +3,9 @@ Let us know how to face them without stupidity. But not too often.
 
 
 
+### ⚠️ Devs zone ⚠️
 
 ```bash
-% npm install --save three      # install
-% npm install --save-dev vite   # install 2
-% npx vite                      # run
+% npm install --save-dev vite       # install
+% npx vite                          # run
 ```
