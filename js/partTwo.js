@@ -16,7 +16,7 @@ class Cube extends THREE.Mesh {
 
   onResize(width, height, aspect) {
     this.cubeSize = width / 9 // 1/5 of the full width
-    this.scale.setScalar(this.cubeSize * (this.cubeActive ? 2 : 1))
+    this.scale.setScalar(this.cubeSize * (this.cubeActive ? 1.5 : 1))
   }
 
   /*onPointerOver(e) {
@@ -62,7 +62,6 @@ controls.screenSpacePanning = false;
 controls.minDistance = 4;
 controls.maxDistance = 10;
 //controls.maxPolarAngle = Math.PI / 2;
-//
 
 // view
 const be1 = new Cube('black')
@@ -139,12 +138,12 @@ window.addEventListener('pointermove', (e) => {
   })
 })
 
-/*window.addEventListener('click', (e) => {
+window.addEventListener('click', (e) => {
   intersects.forEach((hit) => {
     // Call onClick
     if (hit.object.onClick) hit.object.onClick(hit)
   })
-})*/
+})
 
 // render-loop, called 60-times/second
 function animate(t) {
