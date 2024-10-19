@@ -33,8 +33,6 @@ const mouse = new THREE.Vector2()
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.screenSpacePanning = false;
-//controls.minDistance = 2;
-//controls.maxDistance = 6;
 controls.domElement.focus = null;
 
 // center
@@ -187,9 +185,6 @@ function animate(t) {
   requestAnimationFrame(animate)
   red_heart.rotation.y += 0.01
   border_heart.rotation.y -= 0.005
-  /*scene.traverse((obj) => {
-    if (obj.render) obj.render(t)
-  })*/
   renderer.render(scene, camera)
 }
 

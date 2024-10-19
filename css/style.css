@@ -24,3 +24,10 @@ a.link:hover {
 .red {
     color: red;
 }
+
+th,
+td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+}
