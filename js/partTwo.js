@@ -1,39 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-class Cube extends THREE.Mesh {
-  constructor(color) {
-    super()
-    this.geometry = new THREE.BoxGeometry()
-    this.material = new THREE.MeshBasicMaterial({ color: color })
-    this.cubeSize = 0
-    this.cubeActive = false
-  }
-
-  render() {
-    this.rotation.x = this.rotation.y += 0.01
-  }
-
-  onResize(width, height, aspect) {
-    this.cubeSize = width / 9 // 1/5 of the full width
-    this.scale.setScalar(this.cubeSize * (this.cubeActive ? 2 : 1))
-  }
-
-  /*onPointerOver(e) {
-    this.material.color.set('blue')
-    //this.material.color.convertSRGBToLinear()
-  }
-
-  onPointerOut(e) {
-    this.material.color.set( 'red' )
-    this.material.color.convertSRGBToLinear()
-  }*/
-
-  onClick(e) {
-    this.cubeActive = !this.cubeActive
-    this.scale.setScalar(this.cubeSize * (this.cubeActive ? 1.5 : 1))
-  }
-}
+import { Cube } from "./cube.js";
 
 // state
 let width = 0
@@ -41,72 +9,139 @@ let height = 0
 let intersects = []
 let hovered = {}
 
-let controls;
-
-// setup
+// scene
 const scene = new THREE.Scene()
-scene.background = new THREE.Color( 0x4fb9c9 );
+scene.background = new THREE.Color( 0xe6ddcf );
+
+// camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.z = 4
+camera.position.z = 14
+
+// renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
 renderer.setPixelRatio(Math.min(Math.max(1, window.devicePixelRatio), 2))
 renderer.toneMapping = THREE.ACESFilmicToneMapping
 renderer.outputEncoding = THREE.sRGBEncoding
 document.body.appendChild(renderer.domElement)
+
+// raycaster
 const raycaster = new THREE.Raycaster()
+
+// mouse
 const mouse = new THREE.Vector2()
 
 // controls
-controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 controls.screenSpacePanning = false;
-controls.minDistance = 4;
-controls.maxDistance = 10;
-//controls.maxPolarAngle = Math.PI / 2;
-//
+//controls.minDistance = 2;
+//controls.maxDistance = 6;
+controls.domElement.focus = null;
 
-// view
-const be1 = new Cube('black')
-be1.position.set(-2, 0, 0)
-const be2 = new Cube('yellow')
-be2.position.set(0, 0, 0)
-const be3 = new Cube('red')
-be3.position.set(2, 0, 0)
-scene.add(be1)
-scene.add(be2)
-scene.add(be3)
+// center
+const center_x = 0;
+const center_y = -5;
+const center_z = 0;
 
-/*
-const fr1 = new Cube('blue')
-fr1.position.set(2, 0, -4)
-const fr2 = new Cube('white')
-fr2.position.set(2, 0, -2)
+// bottom bar - border
+const bottombar_border_left = new Cube(new THREE.BoxGeometry(1, 4, 1), 'black', null);
+bottombar_border_left.position.set(center_x-9.5, center_y-1.5, center_z);
+scene.add(bottombar_border_left);
 
-scene.add(fr1)
-scene.add(fr2)
-*/
+const bottombar_border_right = new Cube(new THREE.BoxGeometry(1, 4, 1), 'black', null);
+bottombar_border_right.position.set(center_x+9.5, center_y-1.5, center_z);
+scene.add(bottombar_border_right);
 
+const bottombar_border_top = new Cube(new THREE.BoxGeometry(18, 1, 1), 'black', null);
+bottombar_border_top.position.set(center_x, center_y, center_z);
+scene.add(bottombar_border_top);
 
-const ambientLight = new THREE.AmbientLight()
-const pointLight = new THREE.PointLight()
-pointLight.position.set(10, 10, 10)
-scene.add(ambientLight)
-scene.add(pointLight)
+const bottombar_border_bottom = new Cube(new THREE.BoxGeometry(18, 1, 1), 'black', null);
+bottombar_border_bottom.position.set(center_x, center_y-3, center_z);
+scene.add(bottombar_border_bottom);
+
+// heart - border
+const border_heart = new THREE.Group();
+
+const heart_bottom = new Cube(new THREE.BoxGeometry(2, 1, 1), 'black', null);
+heart_bottom.position.set(center_x, center_y+2, center_z);
+border_heart.add( heart_bottom );
+
+// heart bottom diagonal left and right
+for (let i = 0; i < 4; i++) {
+  const cube_left = new Cube(new THREE.BoxGeometry(1, 1, 1), 'black', null);
+  cube_left.position.set(center_x-(1*(i+1))-0.5, center_y+3+i, center_z);
+  border_heart.add( cube_left );
+
+  const cube_right = new Cube(new THREE.BoxGeometry(1, 1, 1), 'black', null);
+  cube_right.position.set(center_x+(1*(i+1))+0.5, center_y+3+i, center_z);
+  border_heart.add( cube_right );
+}
+
+// heart vertical sides
+const heart_side_left = new Cube(new THREE.BoxGeometry(1, 3, 1), 'black', null);
+heart_side_left.position.set(center_x-5.5, center_y+8, center_z);
+border_heart.add(heart_side_left);
+const heart_side_right = new Cube(new THREE.BoxGeometry(1, 3, 1), 'black', null);
+heart_side_right.position.set(center_x+5.5, center_y+8, center_z);
+border_heart.add(heart_side_right);
+
+// heart little top
+const heart_little_top_left = new Cube(new THREE.BoxGeometry(1, 1, 1), 'black', null);
+heart_little_top_left.position.set(center_x-4.5, center_y+10, center_z);
+border_heart.add(heart_little_top_left);
+const heart_little_top_right = new Cube(new THREE.BoxGeometry(1, 1, 1), 'black', null);
+heart_little_top_right.position.set(center_x+4.5, center_y+10, center_z);
+border_heart.add(heart_little_top_right);
+
+// heart top
+const heart_top_left = new Cube(new THREE.BoxGeometry(3, 1, 1), 'black', null);
+heart_top_left.position.set(center_x-2.5, center_y+11, center_z);
+border_heart.add(heart_top_left);
+const heart_top_right = new Cube(new THREE.BoxGeometry(3, 1, 1), 'black', null);
+heart_top_right.position.set(center_x+2.5, center_y+11, center_z);
+border_heart.add(heart_top_right);
+const heart_top_mid = new Cube(new THREE.BoxGeometry(2, 1, 1), 'black', null);
+heart_top_mid.position.set(center_x, center_y+10, center_z);
+border_heart.add(heart_top_mid);
+
+scene.add( border_heart );
+
+////////////////////////////////////////////////////////////////////////////////
+
+const red_heart = new THREE.Group();
+
+// enigme number 1 - 5 novembre
+// bar
+const AAA = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffffff, '11_novembre/5.html');
+AAA.position.set(center_x-8, center_y-1.5, center_z);
+scene.add(AAA);
+// heart
+const AAAaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+AAAaaa.position.set(center_x, center_y+4, center_z);
+red_heart.add( AAAaaa );
+const AAAbbb = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+AAAbbb.position.set(center_x-1, center_y+5, center_z);
+red_heart.add( AAAbbb );
+
+// enigme number 2 - 10 novembre
+// bar
+//const BBB = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffbcbc, '11_novembre/10.html');
+//BBB.position.set(center_x-6, center_y-1.5, center_z);
+//scene.add(BBB);
+// heart
+// TODO
+
+scene.add( red_heart );
+
+////////////////////////////////////////////////////////////////////////////////
 
 // responsive
 function resize() {
   width = window.innerWidth
   height = window.innerHeight
   camera.aspect = width / height
-  const target = new THREE.Vector3(0, 0, 0)
-  const distance = camera.position.distanceTo(target)
-  const fov = (camera.fov * Math.PI) / 180
-  const viewportHeight = 2 * Math.tan(fov / 2) * distance
-  const viewportWidth = viewportHeight * (width / height)
   camera.updateProjectionMatrix()
   renderer.setSize(width, height)
-  scene.traverse((obj) => {
-    if (obj.onResize) obj.onResize(viewportWidth, viewportHeight, camera.aspect)
-  })
 }
 
 window.addEventListener('resize', resize)
@@ -139,20 +174,22 @@ window.addEventListener('pointermove', (e) => {
   })
 })
 
-/*window.addEventListener('click', (e) => {
+window.addEventListener('click', (e) => {
   intersects.forEach((hit) => {
     // Call onClick
     if (hit.object.onClick) hit.object.onClick(hit)
   })
-})*/
+})
 
 // render-loop, called 60-times/second
 function animate(t) {
   controls.update(); //
   requestAnimationFrame(animate)
-  scene.traverse((obj) => {
+  red_heart.rotation.y += 0.01
+  border_heart.rotation.y -= 0.005
+  /*scene.traverse((obj) => {
     if (obj.render) obj.render(t)
-  })
+  })*/
   renderer.render(scene, camera)
 }
 
