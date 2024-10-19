@@ -110,24 +110,24 @@ scene.add( border_heart );
 
 const red_heart = new THREE.Group();
 
-// enigme number 1 - 12 octobre
+// enigme number 1 - 5 novembre
 // bar
-const oct_12_b = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffffff, '10_octobre/12.html');
-oct_12_b.position.set(center_x-8, center_y-1.5, center_z);
-scene.add(oct_12_b);
+const AAA = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffffff, '11_novembre/5.html');
+AAA.position.set(center_x-8, center_y-1.5, center_z);
+scene.add(AAA);
 // heart
-const oct_12_h_1 = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
-oct_12_h_1.position.set(center_x, center_y+4, center_z);
-red_heart.add( oct_12_h_1 );
-const oct_12_h_2 = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
-oct_12_h_2.position.set(center_x-1, center_y+5, center_z);
-red_heart.add( oct_12_h_2 );
+const AAAaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+AAAaaa.position.set(center_x, center_y+4, center_z);
+red_heart.add( AAAaaa );
+const AAAbbb = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+AAAbbb.position.set(center_x-1, center_y+5, center_z);
+red_heart.add( AAAbbb );
 
-// enigme number 2 -
+// enigme number 2 - 10 novembre
 // bar
-const XXXXX = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffbcbc, '10_octobre/18.html');
-XXXXX.position.set(center_x-6, center_y-1.5, center_z);
-scene.add(XXXXX);
+//const BBB = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffbcbc, '11_novembre/10.html');
+//BBB.position.set(center_x-6, center_y-1.5, center_z);
+//scene.add(BBB);
 // heart
 // TODO
 
