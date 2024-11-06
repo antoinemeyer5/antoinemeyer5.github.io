@@ -1,3 +1,7 @@
+.PART_ONE_LETTER_R {
+    float: right;
+}
+
 .month {
     display: grid;
     grid-template-columns: auto auto auto auto;

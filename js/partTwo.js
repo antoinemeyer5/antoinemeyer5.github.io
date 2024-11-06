@@ -11,7 +11,7 @@ let hovered = {}
 
 // scene
 const scene = new THREE.Scene()
-scene.background = new THREE.Color( 0xe6ddcf );
+scene.background = new THREE.Color( 0xc7f2d2 );
 
 // camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
@@ -121,13 +121,76 @@ const AAAbbb = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
 AAAbbb.position.set(center_x-1, center_y+5, center_z);
 red_heart.add( AAAbbb );
 
-// enigme number 2 - 10 novembre
+// enigme - 10 novembre
 // bar
-//const BBB = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffbcbc, '11_novembre/10.html');
-//BBB.position.set(center_x-6, center_y-1.5, center_z);
-//scene.add(BBB);
+const BBB = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xffbcbc, '11_novembre/10.html');
+BBB.position.set(center_x-6, center_y-1.5, center_z);
+scene.add(BBB);
+// heart
+const BBBaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+BBBaaa.position.set(center_x-2, center_y+6, center_z);
+red_heart.add( BBBaaa );
+const BBBbbb = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+BBBbbb.position.set(center_x+1, center_y+5, center_z);
+red_heart.add( BBBbbb );
+
+/*
+// enigme - 15 novembre
+// bar
+const CCC = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff7f7f, '11_novembre/15.html');
+CCC.position.set(center_x-4, center_y-1.5, center_z);
+scene.add(CCC);
 // heart
 // TODO
+
+// enigme - 20 novembre
+// bar
+const DDD = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff4747, '11_novembre/20.html');
+DDD.position.set(center_x-2, center_y-1.5, center_z);
+scene.add(DDD);
+// heart
+// TODO
+
+// enigme - 25 novembre
+// bar
+const EEE = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff0000, '11_novembre/25.html');
+EEE.position.set(center_x-0, center_y-1.5, center_z);
+scene.add(EEE);
+// heart
+// TODO
+
+// enigme - 30 novembre
+// bar
+const FFF = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff0045, '11_novembre/30.html');
+FFF.position.set(center_x+2, center_y-1.5, center_z);
+scene.add(FFF);
+// heart
+// TODO
+
+// enigme - 5 decembre
+// bar
+const GGG = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff007c, '12_decembre/5.html');
+GGG.position.set(center_x+4, center_y-1.5, center_z);
+scene.add(GGG);
+// heart
+// TODO
+
+// enigme - 10 decembre
+// bar
+const HHH = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff00b8, '12_decembre/10.html');
+HHH.position.set(center_x+6, center_y-1.5, center_z);
+scene.add(HHH);
+// heart
+// TODO
+
+// enigme - 15 decembre
+// bar
+const III = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff00e6, '12_decembre/15.html');
+III.position.set(center_x+8, center_y-1.5, center_z);
+scene.add(III);
+// heart
+// TODO
+*/
 
 scene.add( red_heart );
 
