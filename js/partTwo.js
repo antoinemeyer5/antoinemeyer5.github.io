@@ -134,15 +134,17 @@ const BBBbbb = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
 BBBbbb.position.set(center_x+1, center_y+5, center_z);
 red_heart.add( BBBbbb );
 
-/*
 // enigme - 15 novembre
 // bar
 const CCC = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff7f7f, '11_novembre/15.html');
 CCC.position.set(center_x-4, center_y-1.5, center_z);
 scene.add(CCC);
 // heart
-// TODO
+const CCCaaa = new Cube(new THREE.BoxGeometry(3, 1, 1), 'red', null);
+CCCaaa.position.set(center_x+0.5, center_y+6, center_z);
+red_heart.add( CCCaaa );
 
+/*
 // enigme - 20 novembre
 // bar
 const DDD = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff4747, '11_novembre/20.html');
