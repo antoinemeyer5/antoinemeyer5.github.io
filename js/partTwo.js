@@ -157,15 +157,20 @@ const DDDbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
 DDDbbb.position.set(center_x-3.5, center_y+8, center_z);
 red_heart.add( DDDbbb );
 
-/*
 // enigme - 25 novembre
 // bar
 const EEE = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff0000, '11_novembre/25.html');
 EEE.position.set(center_x-0, center_y-1.5, center_z);
 scene.add(EEE);
 // heart
-// TODO
+const EEEaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+EEEaaa.position.set(center_x-1, center_y+7, center_z);
+red_heart.add( EEEaaa );
+const EEEbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
+EEEbbb.position.set(center_x-2.5, center_y+8, center_z);
+red_heart.add( EEEbbb );
 
+/*
 // enigme - 30 novembre
 // bar
 const FFF = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff0045, '11_novembre/30.html');
@@ -253,7 +258,7 @@ window.addEventListener('click', (e) => {
 function animate(t) {
   controls.update(); //
   requestAnimationFrame(animate)
-  red_heart.rotation.y += 0.01
+  red_heart.rotation.y += 0.005
   border_heart.rotation.y -= 0.005
   renderer.render(scene, camera)
 }
