@@ -170,15 +170,20 @@ const EEEbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
 EEEbbb.position.set(center_x-2.5, center_y+8, center_z);
 red_heart.add( EEEbbb );
 
-/*
 // enigme - 30 novembre
 // bar
 const FFF = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff0045, '11_novembre/30.html');
 FFF.position.set(center_x+2, center_y-1.5, center_z);
 scene.add(FFF);
 // heart
-// TODO
+const FFFaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+FFFaaa.position.set(center_x-2, center_y+9, center_z);
+red_heart.add( FFFaaa );
+const FFFbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
+FFFbbb.position.set(center_x-1.5, center_y+8, center_z);
+red_heart.add( FFFbbb );
 
+/*
 // enigme - 5 decembre
 // bar
 const GGG = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff007c, '12_decembre/5.html');
