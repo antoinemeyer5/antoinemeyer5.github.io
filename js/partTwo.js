@@ -144,15 +144,20 @@ const CCCaaa = new Cube(new THREE.BoxGeometry(3, 1, 1), 'red', null);
 CCCaaa.position.set(center_x+0.5, center_y+6, center_z);
 red_heart.add( CCCaaa );
 
-/*
 // enigme - 20 novembre
 // bar
 const DDD = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff4747, '11_novembre/20.html');
 DDD.position.set(center_x-2, center_y-1.5, center_z);
 scene.add(DDD);
 // heart
-// TODO
+const DDDaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+DDDaaa.position.set(center_x-3, center_y+7, center_z);
+red_heart.add( DDDaaa );
+const DDDbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
+DDDbbb.position.set(center_x-3.5, center_y+8, center_z);
+red_heart.add( DDDbbb );
 
+/*
 // enigme - 25 novembre
 // bar
 const EEE = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff0000, '11_novembre/25.html');
