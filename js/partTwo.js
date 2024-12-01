@@ -183,15 +183,20 @@ const FFFbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
 FFFbbb.position.set(center_x-1.5, center_y+8, center_z);
 red_heart.add( FFFbbb );
 
-/*
 // enigme - 5 decembre
 // bar
 const GGG = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff007c, '12_decembre/5.html');
 GGG.position.set(center_x+4, center_y-1.5, center_z);
 scene.add(GGG);
 // heart
-// TODO
+const GGGaaa = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+GGGaaa.position.set(center_x+1, center_y+7, center_z);
+red_heart.add( GGGaaa );
+const GGGbbb = new Cube(new THREE.BoxGeometry(1, 1, 1), 'red', null);
+GGGbbb.position.set(center_x+2.5, center_y+6, center_z);
+red_heart.add( GGGbbb );
 
+/*
 // enigme - 10 decembre
 // bar
 const HHH = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff00b8, '12_decembre/10.html');
