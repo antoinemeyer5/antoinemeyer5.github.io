@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 import { Cube } from "./cube.js";
 
@@ -206,17 +208,58 @@ const HHHaaa = new Cube(new THREE.BoxGeometry(3, 1, 1), 'red', null);
 HHHaaa.position.set(center_x+0.5, center_y+8, center_z);
 red_heart.add( HHHaaa );
 
-/*
 // enigme - 15 decembre
 // bar
 const III = new Cube(new THREE.BoxGeometry(2, 2, 1), 0xff00e6, '12_decembre/15.html');
 III.position.set(center_x+8, center_y-1.5, center_z);
 scene.add(III);
 // heart
-// TODO
-*/
+const IIIaaa = new Cube(new THREE.BoxGeometry(2, 2, 1), 'red', null);
+IIIaaa.position.set(center_x+3, center_y+7.5, center_z);
+red_heart.add( IIIaaa );
+const IIIbbb = new Cube(new THREE.BoxGeometry(2, 1, 1), 'red', null);
+IIIbbb.position.set(center_x+2, center_y+9, center_z);
+red_heart.add( IIIbbb );
 
 scene.add( red_heart );
+
+// letter O
+let materials = [
+  new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+  new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
+];
+const loader = new FontLoader();
+loader.load( '/fonts/gentilis_bold.typeface.json', function ( font ) {
+
+	const textGeo = new TextGeometry( 'O 3rtt3l', {
+		font: font,
+		size: 1,
+		depth: 1,
+		curveSegments: 2,
+		bevelEnabled: true,
+		bevelThickness: 0.02,
+		bevelSize: 0.02,
+		bevelOffset: 0.02,
+		bevelSegments: 1
+	} );
+
+  textGeo.computeBoundingBox();
+
+  const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+
+  let textMesh1 = new THREE.Mesh( textGeo, materials );
+
+  textMesh1.position.x = centerOffset;
+  textMesh1.position.y = 2;
+  textMesh1.position.z = -1;
+
+  textMesh1.rotation.x = 0;
+  textMesh1.rotation.y = Math.PI * 2;
+
+  scene.add( textMesh1 );
+} );
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -270,7 +313,7 @@ window.addEventListener('click', (e) => {
 function animate(t) {
   controls.update(); //
   requestAnimationFrame(animate)
-  red_heart.rotation.y += 0.005
+  //red_heart.rotation.y += 0.005
   border_heart.rotation.y -= 0.005
   renderer.render(scene, camera)
 }
