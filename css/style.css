@@ -31,3 +31,17 @@ td {
     text-align: center;
     padding: 20px;
 }
+
+
+.part_3_table {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.part_3_case {
+    background-color: rgba(191, 191, 191, 0.426);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 2px;
+    font-size: 20px;
+    text-align: center;
+}
