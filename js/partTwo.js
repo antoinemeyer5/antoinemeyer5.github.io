@@ -224,7 +224,6 @@ red_heart.add( IIIbbb );
 scene.add( red_heart );
 
 // letter O
-/*
 let materials = [
   new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
   new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
@@ -259,8 +258,6 @@ loader.load( '/fonts/gentilis_bold.typeface.json', function ( font ) {
 
   scene.add( textMesh1 );
 } );
-*/
-
 
 ////////////////////////////////////////////////////////////////////////////////
 
